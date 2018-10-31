@@ -1,4 +1,4 @@
-Alicloud Load Balancer (CDN) Terraform Module
+Alicloud CDN Terraform Module
 =============================================
 
 Terraform module which creates CDN resources on Alibaba Cloud.
