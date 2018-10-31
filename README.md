@@ -22,7 +22,13 @@ You can use this in your terraform template with the following steps.
 
 
          module "cdn" {
+            source = "./modules/cdn"
 
+            domain_name = "${var.domain_name}"
+            type    = "${var.type}"
+
+            origin_type = "${var.origin_type}"
+            origins     = "${var.origins}"
          }
 
 2. Setting values for the following variables through environment variables:
