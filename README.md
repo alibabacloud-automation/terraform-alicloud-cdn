@@ -12,8 +12,6 @@ Root module calls these modules which can also be used separately to create inde
 
 * [cdn](https://github.com/alibaba/terraform-alicloud-cdn/tree/master/modules/cdn) - create cdn domain
 
-
-
 Usage
 -----
 You can use this in your terraform template with the following steps.
@@ -40,17 +38,17 @@ You can use this in your terraform template with the following steps.
 ## Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| domain_name | The name of a new cdn domain | string | no | yes |
-| type | The is cdn business type | string | web | yes |
-| origin_type | The type origin type | string | domain | yes |
-| origin_port | The type origin port | string | 80 | yes |
+| domain_name | The CDN domain name. Wildcard domain names that start with periods (.) are supported. For example, .a.com. | string | no | yes |
+| type |The business type. Valid values: web, download, video, livestream, and httpsdelivery | string | web | yes |
+| origin_type | The type of the origin. Ipaddr: The origin is configured using an IP address. Domain: The origin is configured using a domain name. Oss: The origin is configured using the Internet domain name of Alibaba Cloud OSS bucket. | string | domain | yes |
+| origin_port | Valid values: 443 and 80. Default value: 80. Port 443 is used for HTTPS requests. Customized ports are supported. | string | 80 | yes |
 | origins     | The origin instanes | list | no | yes |
 
 
 ## Outputs
 | Name | Description |
 |------|-------------|
-| domain | The is domain name |
+| domain | The CDN domain name |
 
 Authors
 -------
