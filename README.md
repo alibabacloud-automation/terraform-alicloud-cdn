@@ -1,4 +1,5 @@
 Alicloud CDN Terraform Module
+terraform-alicloud-cdn-domain
 =============================================
 
 Terraform module which creates CDN resources on Alibaba Cloud.
@@ -12,7 +13,6 @@ Root module calls these modules which can also be used separately to create inde
 * [cdn](https://github.com/alibaba/terraform-alicloud-cdn/tree/master/modules/cdn) - create cdn domain
 
 
-`NOTE`:
 
 Usage
 -----
@@ -22,7 +22,7 @@ You can use this in your terraform template with the following steps.
 
 
          module "cdn" {
-            source = "./modules/cdn"
+            source = "terraform-alicloud-modules/cdn-domain/alicloud"
 
             domain_name = "${var.domain_name}"
             type    = "${var.type}"
@@ -36,6 +36,21 @@ You can use this in your terraform template with the following steps.
     - ALICLOUD_ACCESS_KEY
     - ALICLOUD_SECRET_KEY
 
+
+## Inputs
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| domain_name | The name of a new cdn domain | string | no | yes |
+| type | The is cdn business type | string | web | yes |
+| origin_type | The type origin type | string | domain | yes |
+| origin_port | The type origin port | string | 80 | yes |
+| origins     | The origin instanes | list | no | yes |
+
+
+## Outputs
+| Name | Description |
+|------|-------------|
+| domain | The is domain name |
 
 Authors
 -------
