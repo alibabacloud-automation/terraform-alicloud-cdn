@@ -1,19 +1,25 @@
+variable "region" {
+  description = "The region used to launch this module resources."
+  default     = ""
+}
+
 variable "domain_name" {
-  default     = "jiaion.alicdn.com"
+  default = "jiaion.alicdn.com"
 }
 
 variable "type" {
-  default     = "web"
+  default = "web"
 }
 
 variable "origin_type" {
-  default     = "domain"
+  default = "domain"
 }
 
 variable "origins" {
-  type        = "list"
+  type = list(string)
 
   default = [
     "jiaion.github.io",
   ]
 }
+

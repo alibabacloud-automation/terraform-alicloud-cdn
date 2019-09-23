@@ -1,3 +1,4 @@
 output "domain" {
-  value = "${module.cdn.domain}"
+  value = module.cdn.domain
 }
+
