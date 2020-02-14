@@ -1,23 +1,20 @@
-Terraform module which create CDN domain on Alibaba Cloud.  
-terraform-alicloud-cdn-domain
-=============================================
+terraform-alicloud-cdn
+======================
 
-English | [简体中文](https://github.com/terraform-alicloud-modules/terraform-alicloud-cdn/blob/master/README-CN.md)
+Terraform模块用于在阿里云上添加新的 cdn 域名和为其进行批量配置。
 
-Terraform module which add new cdn domain on Alibaba Cloud and batch configuration for it.
-
-These types of resources are supported:
+支持以下类型的资源：
 
 * [cdn_domain_new](https://www.terraform.io/docs/providers/alicloud/r/cdn_domain_new.html)
 * [cdn_domain_config](https://www.terraform.io/docs/providers/alicloud/r/cdn_domain_config.html)
 
-## Terraform versions
+## Terraform 版本
 
-The Module requires Terraform 0.12 and Terraform Provider AliCloud 1.67.0+.
+本 Module 要求使用 Terraform 0.12 和 阿里云 Provider 1.67.0+。
 
-## Usage
+## 用法
 
-Create a new cdn domain and setting no cdn domain config.
+创建一个新的 cdn 域名，不进行域名配置。
 
 ```hcl
 module "cdn" {
@@ -38,7 +35,7 @@ module "cdn" {
 }
 ```
 
-Create a new cdn domain and set cdn domain config.
+创建一个新的 cdn 域名并进行域名配置。
 
 ```hcl
 module "cdn" {
@@ -73,7 +70,7 @@ module "cdn" {
 }
 ```
 
-No new cdn domain created and batch set cdn config.
+不创建新的 cdn 域名，对已存在的 cdn 域名进行批量配置。
 
 ```hcl
 module "cdn" {
@@ -98,7 +95,7 @@ module "cdn" {
 }
 ```
 
-Create a new cdn domain and batch set cdn config(contains the new cdn domain).
+创建一个新的 cdn 域名，并进行 cdn 域名的批量配置（包含新创建的 cdn 域名）。
 
 ```hcl
 module "cdn" {
@@ -134,20 +131,19 @@ module "cdn" {
 }
 ```
 
-## Examples
+## 示例
 
-* [complete example](https://github.com/terraform-alicloud-modules/terraform-alicloud-cdn/tree/master/examples/complete)
+* [CDN 完整示例](https://github.com/terraform-alicloud-modules/terraform-alicloud-cdn/tree/master/examples/complete)
 
-
-Authors
+作者
 -------
-Created and maintained by Zhou qilin(z17810666992@163.com), He Guimin(@xiaozhu36, heguimin36@163.com).
+Created and maintained by Zhou qilin(z17810666992@163.com), He Guimin(@xiaozhu36, heguimin36@163.com)
 
-License
+许可
 ----
 Apache 2 Licensed. See LICENSE for full details.
 
-Reference
+参考
 ---------
 * [Terraform-Provider-Alicloud Github](https://github.com/terraform-providers/terraform-provider-alicloud)
 * [Terraform-Provider-Alicloud Release](https://releases.hashicorp.com/terraform-provider-alicloud/)
