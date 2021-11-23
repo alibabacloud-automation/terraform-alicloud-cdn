@@ -8,10 +8,6 @@ Terraform模块用于在阿里云上添加新的 cdn 域名和为其进行批量
 * [cdn_domain_new](https://www.terraform.io/docs/providers/alicloud/r/cdn_domain_new.html)
 * [cdn_domain_config](https://www.terraform.io/docs/providers/alicloud/r/cdn_domain_config.html)
 
-## Terraform 版本
-
-本 Module 要求使用 Terraform 0.12 和 阿里云 Provider 1.67.0+。
-
 ## 用法
 
 创建一个新的 cdn 域名，不进行域名配置。
@@ -135,9 +131,79 @@ module "cdn" {
 
 * [CDN 完整示例](https://github.com/terraform-alicloud-modules/terraform-alicloud-cdn/tree/master/examples/complete)
 
+## 注意事项
+本Module从版本v1.4.0开始已经移除掉如下的 provider 的显示设置：
+
+```hcl
+provider "alicloud" {
+  profile                 = var.profile != "" ? var.profile : null
+  shared_credentials_file = var.shared_credentials_file != "" ? var.shared_credentials_file : null
+  region                  = var.region != "" ? var.region : null
+  skip_region_validation  = var.skip_region_validation
+  configuration_source    = "terraform-alicloud-modules/cdn"
+}
+```
+
+如果你依然想在Module中使用这个 provider 配置，你可以在调用Module的时候，指定一个特定的版本，比如 1.3.0:
+
+```hcl
+module "cdn" {
+  source      = "terraform-alicloud-modules/cdn/alicloud"
+  version     = "1.3.0"
+  region      = "cn-hangzhou"
+  profile     = "Your-Profile-Name"
+  domain_name = "terraform.test.com"
+  cdn_type    = "web"
+  // ...
+}
+```
+
+如果你想对正在使用中的Module升级到 1.4.0 或者更高的版本，那么你可以在模板中显示定义一个系统过Region的provider：
+```hcl
+provider "alicloud" {
+  region  = "cn-hangzhou"
+  profile = "Your-Profile-Name"
+}
+module "cdn" {
+  source      = "terraform-alicloud-modules/cdn/alicloud"
+  domain_name = "terraform.test.com"
+  cdn_type    = "web"
+  // ...
+}
+```
+或者，如果你是多Region部署，你可以利用 `alias` 定义多个 provider，并在Module中显示指定这个provider：
+
+```hcl
+provider "alicloud" {
+  region  = "cn-hangzhou"
+  profile = "Your-Profile-Name"
+  alias   = "hz"
+}
+module "cdn" {
+  source      = "terraform-alicloud-modules/cdn/alicloud"
+  providers   = {
+    alicloud = alicloud.hz
+  }
+  domain_name = "terraform.test.com"
+  cdn_type    = "web"
+  // ...
+}
+```
+
+定义完provider之后，运行命令 `terraform init` 和 `terraform apply` 来让这个provider生效即可。
+
+更多provider的使用细节，请移步[How to use provider in the module](https://www.terraform.io/docs/language/modules/develop/providers.html#passing-providers-explicitly)
+
+## Terraform 版本
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.0 |
+| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | >= 1.67.0 |
+
 作者
 -------
-Created and maintained by Zhou qilin(z17810666992@163.com), He Guimin(@xiaozhu36, heguimin36@163.com)
+Created and maintained by Alibaba Cloud Terraform Team(terraform@alibabacloud.com)
 
 许可
 ----
