@@ -1,4 +1,10 @@
-## 1.4.0 (Unreleased)
+## 1.5.0 (Unreleased)
+## 1.4.0 (December 10, 2021)
+
+ENHANCEMENTS:
+
+- Removes the provider setting and improves the Readme [GH-6](https://github.com/terraform-alicloud-modules/terraform-alicloud-cdn/pull/6)
+
 ## 1.3.0 (February 14, 2020)
 
 IMPROVEMENTS:
