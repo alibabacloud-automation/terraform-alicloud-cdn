@@ -42,16 +42,16 @@ variable "cdn_type" {
   default     = "web"
 }
 
-variable "sources" {
-  description = "The source address list of the cdn domain. Each item can contains keys:'content'(The adress of source. Valid values can be ip or doaminName.),'type'(The type of the source. Valid values are 'ipaddr', 'domain' and 'oss'. Default to 'ipaddr'),'port'(The port of source. Valid values are '443' and '80'. Default value is '80'.),'priority'(Priority of the source. Valid values are '0' and '100'. Default value is '20'.),'weight'(Weight of the source. Valid values are from '0' to '100'. Default value is '10', but if type is 'ipaddr', the value can only be '10'.)."
-  type        = list(map(string))
-  default     = []
-}
-
 variable "scope" {
   description = "Scope of the cdn domain. Valid values are 'domestic', 'overseas', global'. Default value is 'domestic'. This parameter's setting is valid Only for the international users and domestic L3 and above users ."
   type        = string
   default     = "domestic"
+}
+
+variable "sources" {
+  description = "The source address list of the cdn domain. Each item can contains keys:'content'(The adress of source. Valid values can be ip or doaminName.),'type'(The type of the source. Valid values are 'ipaddr', 'domain' and 'oss'. Default to 'ipaddr'),'port'(The port of source. Valid values are '443' and '80'. Default value is '80'.),'priority'(Priority of the source. Valid values are '0' and '100'. Default value is '20'.),'weight'(Weight of the source. Valid values are from '0' to '100'. Default value is '10', but if type is 'ipaddr', the value can only be '10'.)."
+  type        = list(map(string))
+  default     = []
 }
 
 variable "tags" {
@@ -63,6 +63,12 @@ variable "tags" {
 #####################
 # Cdn_config
 #####################
+variable "set_config" {
+  description = "Whether to batch set config for new or existing domain names. Default to true."
+  type        = bool
+  default     = true
+}
+
 variable "existing_domain_names" {
   description = "List of added cdn domain names for batch configuration. If set, the 'set_config' should be true."
   type        = list(string)
@@ -82,10 +88,4 @@ variable "function_arg" {
     arg_value = string
   }))
   default = []
-}
-
-variable "set_config" {
-  description = "Whether to batch set config for new or existing domain names. Default to true."
-  type        = bool
-  default     = true
 }
