@@ -1,31 +1,31 @@
 module "cdn" {
-  source      = "../.."
-  domain_name = "terraform.test.com"
+  source = "../.."
+
+  # Cdn
+  add_cdn_domain = true
+
+  domain_name = "168.com"
   cdn_type    = "web"
-  scope       = "overseas"
-  sources = [
-    {
-      content  = "1.1.1.1"
-      type     = "ipaddr"
-      port     = 80
-      priority = 20
-      weight   = 10
-    }
-  ]
-  existing_domain_names = ["terraform001.test.com", "terraform002.test.com"]
-  function_name          = "filetype_based_ttl_set"
-  function_arg = [
-    {
-      arg_name  = "ttl"
-      arg_value = "10"
-    },
-    {
-      arg_name  = "file_type"
-      arg_value = "txt,jpg"
-    },
-    {
-      arg_name  = "weight"
-      arg_value = "20"
-    }
-  ]
+  scope       = "domestic"
+  sources     = var.sources
+  tags        = var.tags
+
+  # Cdn_config
+  set_config = false
+
+}
+
+module "cdn_config" {
+  source = "../.."
+
+  # Cdn
+  add_cdn_domain = false
+
+  # Cdn_config
+  set_config = true
+
+  existing_domain_names = [module.cdn.this_cdn_domain_name]
+  function_name         = "ip_allow_list_set"
+  function_arg          = var.function_arg
+
 }

@@ -23,7 +23,7 @@ resource "alicloud_cdn_domain_new" "this" {
 # Cdn_config
 #####################
 locals {
-  domain_name = flatten([var.existing_domain_names, alicloud_cdn_domain_new.this.*.domain_name])
+  domain_name = var.add_cdn_domain && var.set_config ? flatten([var.existing_domain_names, concat(alicloud_cdn_domain_new.this.*.domain_name, [""])[0]]) : var.existing_domain_names
   add_config  = length(local.domain_name) > 0 ? var.set_config : false
 }
 
