@@ -1,3 +1,5 @@
+## [1.4.1](https://github.com/alibabacloud-automation/terraform-alicloud-cdn/compare/v1.4.0...v1.4.1) (2025-11-27)
+
 ## 1.5.0 (Unreleased)
 ## 1.4.0 (December 10, 2021)
 
