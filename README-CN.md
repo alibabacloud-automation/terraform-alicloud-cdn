@@ -10,6 +10,12 @@ Terraform模块用于在阿里云上添加新的 cdn 域名和为其进行批量
 
 ## 用法
 
+<div style="display: block;margin-bottom: 40px;"><div class="oics-button" style="float: right;position: absolute;margin-bottom: 10px;">
+  <a href="https://api.aliyun.com/terraform?source=Module&activeTab=document&sourcePath=terraform-alicloud-modules%3A%3Acdn&spm=docs.m.terraform-alicloud-modules.cdn" target="_blank">
+    <img alt="Open in AliCloud" src="https://img.alicdn.com/imgextra/i1/O1CN01hjjqXv1uYUlY56FyX_!!6000000006049-55-tps-254-36.svg" style="max-height: 44px; max-width: 100%;">
+  </a>
+</div></div>
+
 创建一个新的 cdn 域名，不进行域名配置。
 
 ```hcl
